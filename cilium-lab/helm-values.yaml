@@ -1,0 +1,19 @@
+cluster:
+  id: 0
+  name: kind-kind
+encryption:
+  enabled: true
+  nodeEncryption: true
+  type: wireguard
+ipam:
+  mode: kubernetes
+kubeProxyReplacement: false
+l7Proxy: false
+operator:
+  replicas: 1
+serviceAccounts:
+  cilium:
+    name: cilium
+  operator:
+    name: cilium-operator
+tunnel: vxlan
