@@ -54,6 +54,15 @@ echo $POD2
 kubectl exec -ti pod-worker -- ping $POD2
 ```
 
+```bash
+POD3=$(kubectl get pod pod-worker3 --template '{{.status.podIP}}')
+echo $POD3
+```
+
+```bash
+kubectl exec -ti pod-worker -- bash -c "while true; do curl -I http://$POD3/login?token=12345; sleep 2; done"
+```
+
 ## node-to-node encryption
 
 ```bash

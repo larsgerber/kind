@@ -17,3 +17,9 @@ serviceAccounts:
   operator:
     name: cilium-operator
 tunnel: vxlan
+hubble:
+  enabled: true
+  ui:
+    enabled: true
+  relay:
+    enabled: true
