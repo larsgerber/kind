@@ -42,7 +42,7 @@ tcpdump -n -i cilium_wg0
 ```
 
 ```bash
-kubectl apply -f pod1.yaml -f pod2.yaml -o yaml
+kubectl apply -f pod1.yaml -f pod2.yaml
 ```
 
 ```bash
@@ -54,15 +54,6 @@ echo $POD2
 kubectl exec -ti pod-worker -- ping $POD2
 ```
 
-```bash
-POD3=$(kubectl get pod pod-worker3 --template '{{.status.podIP}}')
-echo $POD3
-```
-
-```bash
-kubectl exec -ti pod-worker -- bash -c "while true; do curl -I http://$POD3/login?token=12345; sleep 2; done"
-```
-
 ## node-to-node encryption
 
 ```bash
@@ -72,6 +63,33 @@ echo $ETH0_IP
 
 ```bash
 tcpdump -n -i cilium_wg0 src $ETH0_IP and dst port 4240
+```
+
+## Wireshark
+
+```bash
+kubectl apply -f pod3.yaml
+```
+
+```bash
+docker exec kind-worker3 apt-get update
+docker exec kind-worker3 apt-get -y install tcpdump
+docker exec kind-worker3 tcpdump -i eth0 -w - | wireshark -k -i -
+```
+
+```bash
+POD3=$(kubectl get pod pod-worker3 --template '{{.status.podIP}}')
+kubectl exec -ti pod-worker -- bash -c "while true; do curl -I http://$POD3/login?token=12345; sleep 2; done"
+```
+
+VXLAN traffic is not automatically decoded. For that, go to Analyze->Decode and setup like below:
+
+* UDP port 8472 VXLAN
+
+```bash
+NODE1=$(kubectl get nodes kind-worker -o jsonpath="{.status.addresses[?(@.type=='InternalIP')].address}")
+NODE3=$(kubectl get nodes kind-worker3 -o jsonpath="{.status.addresses[?(@.type=='InternalIP')].address}")
+echo "Wireshark query: ip.src == $NODE1 && ip.dst == $NODE3"
 ```
 
 ## Cleanup
