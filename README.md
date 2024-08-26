@@ -1,13 +1,5 @@
-# Kind cluster setup with NGINX
+# Kind cluster setups
 
-```bash
-kind create cluster --config ./config/cluster.yaml
-```
-
-```bash
-kubectl apply -f ./config/nginx.yaml
-```
-
-```bash
-kubectl apply -f ./config/usage.yaml
-```
+* [Ingress NGINX Controller: Example](/nginx-ingress/)
+* [Ingress NGINX Controller: Validation Bypass](/CVE-2024-7646/)
+* [Cilium: Transparent Encryption with WireGuard](/cilium-lab/)

@@ -1,6 +1,4 @@
-# Ingress NGINX Controller: Validation Bypass
-
-[github.com/advisories/CVE-2024-7646](https://github.com/advisories/GHSA-qx8j-xj5q-v7r3)
+# Ingress NGINX Controller: Example
 
 ## Install
 
@@ -13,22 +11,18 @@ kubectl apply -f nginx.yaml
 ```
 
 ```bash
-bash ./allow-snippet-annotations.sh
-```
-
-```bash
 kubectl apply -f usage.yaml
 ```
 
 ## Test
 
 ```bash
-curl -I 127.0.0.1/foo/hostname
+curl 127.0.0.1/foo/hostname
 foo-app
 ```
 
 ```bash
-curl -I 127.0.0.1/bar/hostname
+curl 127.0.0.1/bar/hostname
 bar-app
 ```
 
