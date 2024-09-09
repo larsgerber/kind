@@ -68,7 +68,7 @@ tcpdump -n -i cilium_wg0 src $ETH0_IP and dst port 4240
 ## Wireshark
 
 ```bash
-kubectl apply -f pod3.yaml
+kubectl apply -f pod1.yaml -f pod3.yaml
 ```
 
 ```bash
