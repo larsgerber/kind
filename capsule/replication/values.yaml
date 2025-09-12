@@ -1,0 +1,12 @@
+options:
+  logLevel: 7
+  extraArgs:
+    - --feature-gates=ProxyClusterScoped=true
+    - --feature-gates=ProxyAllNamespaced=true
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi

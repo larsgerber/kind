@@ -3,3 +3,5 @@
 * [Ingress NGINX Controller: Example](/nginx-ingress/)
 * [Ingress NGINX Controller: Validation Bypass](/CVE-2024-7646/)
 * [Cilium: Transparent Encryption with WireGuard](/cilium-lab/)
+* [Capsule: Memory issue](/capsule/memory/)
+* [Capsule: Replication issue](/capsule/replication/)

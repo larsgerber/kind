@@ -1,0 +1,17 @@
+apiVersion: capsule.clastix.io/v1beta2
+kind: GlobalTenantResource
+metadata:
+  name: replicate-restrict-tenant-connectivity
+spec:
+  tenantSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: "oil"
+  resyncPeriod: 60s
+  resources:
+    - namespacedItems:
+        - apiVersion: networking.k8s.io/v1
+          kind: NetworkPolicy
+          namespace: capsule-system
+          selector:
+            matchLabels:
+              replicate: "true"
