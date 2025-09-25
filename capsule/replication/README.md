@@ -9,6 +9,7 @@ kind create cluster --config kind-cluster.yaml
 Install Capsule
 
 ```bash
+helm repo add projectcapsule https://projectcapsule.github.io/charts
 helm upgrade --install capsule projectcapsule/capsule --version 0.10.0 -n capsule-system --create-namespace
 ```
 

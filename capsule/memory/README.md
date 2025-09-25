@@ -12,6 +12,14 @@ Install the metrics-server
 kubectl apply -f metrics-server.yaml
 ```
 
+Install cert-manager
+
+```bash
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.crds.yaml
+helm repo add jetstack https://charts.jetstack.io --force-update
+helm upgrade --install cert-manager jetstack/cert-manager --version v1.18.2 --namespace cert-manager --create-namespace
+```
+
 Generate a lot of CRDs
 
 ```bash
@@ -27,6 +35,7 @@ kubectl get crd --no-headers | wc -l
 Install Capsule
 
 ```bash
+helm repo add projectcapsule https://projectcapsule.github.io/charts
 helm upgrade --install capsule projectcapsule/capsule --version 0.10.0 -n capsule-system --create-namespace
 ```
 
